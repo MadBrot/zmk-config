@@ -21,6 +21,15 @@
 };
 
 / {
+    combos {
+        compatible = "zmk,combos";
+
+        gaming {
+            bindings = <&to 3>;
+            key-positions = <0 24 11 35>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -63,6 +72,12 @@
 
             bindings = <
 &kp TAB  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp NUMBER_0  &kp BSPC  &kp LCTRL  &trans  &kp LEFT_BRACKET  &kp LEFT_BRACE  &kp LEFT_PARENTHESIS  &kp EQUAL  &kp MINUS  &kp RIGHT_PARENTHESIS  &kp RIGHT_BRACE  &kp RBKT  &kp BSLH  &kp GRAVE  &kp LSHFT  &kp EXCLAMATION  &kp AT_SIGN  &kp POUND  &kp DOLLAR  &kp PERCENT  &kp CARET  &kp AMPERSAND  &kp ASTERISK  &kp MINUS  &kp PIPE  &kp TILDE  &trans  &trans  &trans  &trans  &trans  &trans
+            >;
+        };
+
+        gaming {
+            bindings = <
+&kp ESCAPE  &kp TAB  &kp Q  &kp W  &kp E  &kp R  &none  &none  &none  &none  &none  &to 0  &none  &kp LEFT_SHIFT  &kp A  &kp S  &kp D  &kp F  &none  &none  &none  &none  &none  &none  &none  &kp LEFT_CONTROL  &kp Z  &kp X  &kp C  &kp V  &none  &none  &none  &none  &none  &none  &none  &kp SPACE  &kp LEFT_ALT  &none  &none  &none
             >;
         };
     };
