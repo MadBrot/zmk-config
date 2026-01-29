@@ -57,7 +57,15 @@
 // Layers
 #define BASE  0
 #define LOWER 1
-#define MOUSE 5
+#define MOUSE 4
+
+// Keys
+#define MEH LC(LS(LALT))
+#define U_CUT LS(DEL)
+#define U_COPY LC(INS)
+#define U_PASTE LS(INS)
+#define ___ &trans
+#define _0_ &to BASE 
 
 #define QUICK_TAP_MS 175
 
