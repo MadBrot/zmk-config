@@ -57,8 +57,11 @@
 // Layers
 #define BASE  0
 #define LOWER 1
+#define MOUSE 5
 
 #define QUICK_TAP_MS 175
+
+#include "includes/mouse.dtsi"
 
 #define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS)                                 \
   ZMK_HOLD_TAP(NAME, bindings = <HOLD>, <TAP>; flavor = "balanced";            \
@@ -104,12 +107,12 @@ MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)
             layers = <BASE>;
         };
 
-        // combo_mouse {
-        //     timeout-ms = <50>;
-        //     key-positions = <RH1 RH2>;
-        //     bindings = <&to MOUSE>;
-        //     layers = <BASE>;
-        // };
+        combo_mouse {
+            timeout-ms = <50>;
+            key-positions = <RH1 RH2>;
+            bindings = <&to MOUSE>;
+            layers = <BASE>;
+        };
 
         // combo_reset {
         //     timeout-ms = <50>;
@@ -243,6 +246,15 @@ MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)
                 &none       &kp LEFT_SHIFT   &kp A  &kp S  &kp D  &kp F   &none  &none  &none  &none  &none  &none
                 &none       &kp LEFT_CONTROL &kp Z  &kp X  &kp C  &kp V   &none  &none  &none  &none  &none  &none
                                              &none  &kp SPACE  &kp LEFT_ALT  &none  &none  &none
+            >;
+        };
+
+        mouse {
+            bindings = <
+                _0_      _0_      _0_      _0_       _0_       _0_      _MS_L   _MS_D   _MS_U   _MS_R   _0_      _0_
+                _0_      &kp RGUI &kp LALT &kp LCTRL &kp LSHFT _0_     _MM_L   _MM_D   _MM_U   _MM_R   _0_      _0_
+                _0_      _0_      _0_      _0_       _0_       _0_      _0_     &kp PG_DN &kp PG_UP _0_      _0_      _0_
+                                  _0_      _0_       _0_      &mkp LCLK &mkp RCLK &mkp MCLK
             >;
         };
     };
