@@ -46,3 +46,6 @@ CONFIG_ZMK_STUDIO=y
 
 # Improved connection stability
 CONFIG_ZMK_BLE_EXPERIMENTAL_CONN=y
+
+# Enable ZMK Mouse feature
+CONFIG_ZMK_POINTING=y
