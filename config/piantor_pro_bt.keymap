@@ -61,9 +61,6 @@
 
 // Keys
 #define MEH LC(LS(LALT))
-#define U_CUT LS(DEL)
-#define U_COPY LC(INS)
-#define U_PASTE LS(INS)
 #define ___ &trans
 #define _0_ &to BASE 
 
@@ -212,6 +209,34 @@ MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)
             key-positions = <RB2 RB3>;
             bindings = <&kp GT>;
             layers = <BASE>;
+        };
+
+        combo_undo {
+            timeout-ms = <50>;
+            key-positions = <LB0 LB1>;
+            bindings = <&kp LG(Z)>;
+            layers = <BASE>;
+        };
+
+        combo_cut {
+            timeout-ms = <50>;
+            key-positions = <LB1 LB2>;
+            bindings = <&kp LG(X)>;
+            layers = <BASE>;
+        };
+
+        combo_copy {
+            timeout-ms = <50>;
+            key-positions = <LB2 LB3>;
+            bindings = <&kp LG(C)>;
+            layers = <BASE>;
+        };
+
+        combo_paste {
+            timeout-ms = <50>;
+            key-positions = <LB3 LB4>;
+            bindings = <&kp LG(V)>;
+            layers = <U_COPY>;
         };
     };
 
