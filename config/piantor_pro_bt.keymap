@@ -213,28 +213,28 @@ MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)
 
         combo_undo {
             timeout-ms = <50>;
-            key-positions = <LB0 LB1>;
+            key-positions = <LB4 LB3>;
             bindings = <&kp LG(Z)>;
             layers = <BASE>;
         };
 
         combo_cut {
             timeout-ms = <50>;
-            key-positions = <LB1 LB2>;
+            key-positions = <LB3 LB2>;
             bindings = <&kp LG(X)>;
             layers = <BASE>;
         };
 
         combo_copy {
             timeout-ms = <50>;
-            key-positions = <LB2 LB3>;
+            key-positions = <LB2 LB1>;
             bindings = <&kp LG(C)>;
             layers = <BASE>;
         };
 
         combo_paste {
             timeout-ms = <50>;
-            key-positions = <LB3 LB4>;
+            key-positions = <LB1 LB0>;
             bindings = <&kp LG(V)>;
             layers = <BASE>;
         };
