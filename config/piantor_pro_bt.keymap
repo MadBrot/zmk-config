@@ -5,23 +5,23 @@
 #include <zmk-helpers/helper.h>
 
 /* Left */
-#define LT4  0
-#define LT3  1
-#define LT2  2
-#define LT1  3
-#define LT0  4
+#define LT4  1
+#define LT3  2
+#define LT2  3
+#define LT1  4
+#define LT0  5
 
-#define LM4 12
-#define LM3 13
-#define LM2 14
-#define LM1 15
-#define LM0 16
+#define LM4 13
+#define LM3 14
+#define LM2 15
+#define LM1 16
+#define LM0 17
 
-#define LB4 24
-#define LB3 25
-#define LB2 26
-#define LB1 27
-#define LB0 28
+#define LB4 25
+#define LB3 26
+#define LB2 27
+#define LB1 28
+#define LB0 29
 
 #define LH2 36
 #define LH1 37
@@ -211,30 +211,37 @@ MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)
             layers = <BASE>;
         };
 
+        combo_select_all {
+            timeout-ms = <50>;
+            key-positions = <LT4 LM4>;
+            bindings = <&kp LG(A)>;
+            layers = <BASE>;
+        };
+
         combo_undo {
             timeout-ms = <50>;
-            key-positions = <LB4 LB3>;
+            key-positions = <LM4 LB4>;
             bindings = <&kp LG(Z)>;
             layers = <BASE>;
         };
 
         combo_cut {
             timeout-ms = <50>;
-            key-positions = <LB3 LB2>;
+            key-positions = <LM3 LB3>;
             bindings = <&kp LG(X)>;
             layers = <BASE>;
         };
 
         combo_copy {
             timeout-ms = <50>;
-            key-positions = <LB2 LB1>;
+            key-positions = <LM2 LB2>;
             bindings = <&kp LG(C)>;
             layers = <BASE>;
         };
 
         combo_paste {
             timeout-ms = <50>;
-            key-positions = <LB1 LB0>;
+            key-positions = <LM1 LB1>;
             bindings = <&kp LG(V)>;
             layers = <BASE>;
         };
