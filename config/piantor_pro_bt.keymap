@@ -60,7 +60,7 @@
 #define MOUSE 4
 
 // Keys
-#define MEH LC(LS(LALT))
+#define MEH LG(LC(LS(LALT)))
 #define ___ &trans
 #define _0_ &to BASE 
 #define AERO LA(LGUI)
