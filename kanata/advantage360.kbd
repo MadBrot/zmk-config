@@ -1,0 +1,192 @@
+;; Piantor ZMK → Kanata for Kinesis Advantage 360 (non-Pro)
+;; Source: config/piantor_pro_bt.keymap (mouse + gaming omitted)
+;; Requires: Kanata 1.12+
+;; Cheat sheet: kanata/CHEATSHEET.md
+;;
+;; Default path (symlink): ~/.config/kanata/kanata.kbd
+;;   -> also ~/.dotfiles/.config/kanata/kanata.kbd (same dir)
+;; Autostart: LaunchDaemon com.example.kanata (root).
+;; After config changes OR plugging in the Adv360, restart:
+;;   sudo launchctl kickstart -k system/com.example.kanata
+;;
+;; SmartSet (do after): remap Adv360 thumbs so they emit these keys.
+;; Leave letter keys stock QWERTY.
+;;
+;;   Piantor slot     Kanata key    SmartSet action
+;;   --------------   ----------    ---------------
+;;   LH2 AERO         f15           […]>[f15]
+;;   LH1 Shift        f17           […]>[f17]
+;;   LH0 LOWER        f13           […]>[f13]
+;;   RH0 RAISE        f14           […]>[f14]
+;;   RH1 Space        spc           leave Space
+;;   RH2 AERO         f16           […]>[f16]
+;;
+;; Thumb row (outer → inner | inner → outer):
+;;   AERO | Shift | LOWER  ||  RAISE | Space | AERO
+;; Bspc = any Shift+Space (defoverrides). Del = LOWER+Space.
+
+(defcfg
+  process-unmapped-keys yes
+  concurrent-tap-hold yes
+  delegate-to-first-layer yes
+  tap-hold-require-prior-idle 150
+  chords-v2-min-idle 150
+  log-layer-changes no
+  ;; Explicitly grab Adv360 + MacBook; exclude Piantor (firmware) and
+  ;; Karabiner's virtual output device (feedback loop).
+  ;; Re-grab Adv360 when plugged in after Kanata already started
+  macos-continue-if-no-devs-found yes
+  macos-dev-names-include (
+    "Kinesis Adv360"
+    "Apple Internal Keyboard / Trackpad"
+  )
+  macos-dev-names-exclude (
+    "Piantor Pro BT"
+    "Karabiner DriverKit VirtualHIDKeyboard 1.8.0"
+  )
+)
+
+(defhands
+  (left  caps tab esc lsft q w e r t a s d f g z x c v b f15 f17 f13)
+  (right bspc apos y u i o p h j k l ; n m , . / f14 spc f16 ralt)
+)
+
+(defvar
+  hold-time 280
+  tap-repress 175
+  combo-timeout 50
+)
+
+(deftemplate hrm (tap-key hold-key)
+  (tap-hold-opposite-hand-release $hold-time $tap-key $hold-key
+    (same-hand tap)
+    (timeout hold)
+    (tap-repress-timeout $tap-repress)
+    (neutral-keys f15 f17 f13 f14 spc f16)
+    (neutral hold)
+  )
+)
+
+(defalias
+  aero (multi lalt lmet)
+  meh  (multi lmet lctrl lsft lalt)
+  low  (layer-while-held lower)
+  rai  (layer-while-held raise)
+  cw   (caps-word 2000)
+
+  ;; Layer access helpers (Mac + boards)
+  cap  (tap-hold-release $tap-repress $hold-time esc @low)
+  ropt (tap-hold-release $tap-repress $hold-time ralt @low)
+  quot (tap-hold-release $tap-repress $hold-time apos @rai)
+
+  ;; German umlauts on LOWER (macOS Option dead keys; ABC/US input source)
+  ae  (macro A-u a)
+  oe  (macro A-u o)
+  ue  (macro A-u u)
+  Ae  (macro (unshift lalt u) a)
+  Oe  (macro (unshift lalt u) o)
+  Ue  (macro (unshift lalt u) 50 u)
+  _ae (fork @ae @Ae (lsft rsft))
+  _oe (fork @oe @Oe (lsft rsft))
+  _ue (fork @ue @Ue (lsft rsft))
+  sz  (macro A-s)
+
+  ;; Programming macros (RAISE)
+  arr (macro - S-.)
+  fat (macro = S-.)
+
+  a (t! hrm a @aero)
+  s (t! hrm s lalt)
+  d (t! hrm d lmet)
+  f (t! hrm f lctrl)
+  g (t! hrm g @meh)
+  h (t! hrm h @meh)
+  j (t! hrm j rctrl)
+  k (t! hrm k rmet)
+  l (t! hrm l ralt)
+  ; (t! hrm ; @aero)
+)
+
+(defsrc
+  caps
+  tab  q  w  e  r  t        y  u  i  o  p  bspc
+  esc  a  s  d  f  g        h  j  k  l  ;  apos
+  lsft z  x  c  v  b        n  m  ,  .  /
+            f15 f17 f13   f14 spc f16
+                                 ralt
+)
+
+(deflayer base
+  @cap
+  tab  q   w   e   r   t          y   u   i   o   p   bspc
+  esc  @a  @s  @d  @f  @g         @h  @j  @k  @l  @;  @quot
+  lsft z   x   c   v   b          n   m   ,   .   /
+            @aero lsft @low     @rai spc @aero
+                                 @ropt
+)
+
+;; LOWER: umlauts, arrows/nav, F-keys (no numpad — that lives on RAISE)
+(deflayer lower
+  _
+  tab  1  2  3  4  5          6     7     8    9     0  _
+  lctrl @_ae @sz @_oe @_ue _  left  down  up   rght  home end
+  lsft  f5 f6 f7 f8 f9        pgup  pgdn  A-left A-right _
+            lmet  _    _    _     del  _
+                                 _
+)
+
+;; RAISE: symbols + right-hand numpad on uio / jkl / nm,.
+;;   u i o → 7 8 9
+;;   j k l → 4 5 6
+;;   n m , . → 0 1 2 3
+(deflayer raise
+  _
+  tab   1    S-7  S-8  -    S-6       _     7     8    9     @arr bspc
+  lctrl _    [    S-[  S-9  =         _     4     5    6     \    grv
+  lsft  S-1  S-2  S-3  S-4  S-5       0     1     2    3     @fat
+             _    _    _            _  0  0
+                                 _
+)
+
+;; Shift+Space → Backspace (works with thumb Shift or pinky Shift; hold to repeat)
+(defoverrides
+  (lsft spc) (bspc)
+  (rsft spc) (bspc)
+)
+
+(defchordsv2
+  ;; editing (all layers)
+  (j k l)  ret     $combo-timeout first-release ()
+  (x c v)  bspc    $combo-timeout first-release ()
+  (m , .)  bspc    $combo-timeout first-release ()
+  (s d f)  del     $combo-timeout first-release ()
+  ;; LOWER thumb + Space → Delete (backup if layer timing misses)
+  (f13 spc) del    200 first-release ()
+  ;; ZMK K_SLEEP is Linux-only in Kanata; on macOS this locks the screen
+  (tab esc lsft) C-M-q $combo-timeout all-released ()
+
+  ;; caps-word + symbols + clipboard (base only)
+  (f j)    @cw     $combo-timeout all-released (lower raise)
+
+  (n m)    -       $combo-timeout all-released (lower raise)
+  (b n)    S--     $combo-timeout all-released (lower raise)
+  (h j)    =       $combo-timeout all-released (lower raise)
+  (q w)    grv     $combo-timeout all-released (lower raise)
+  (. /)    S-\     $combo-timeout all-released (lower raise)
+
+  (u j)    [       $combo-timeout all-released (lower raise)
+  (o l)    ]       $combo-timeout all-released (lower raise)
+  (u i)    S-[     $combo-timeout all-released (lower raise)
+  (i o)    S-]     $combo-timeout all-released (lower raise)
+  (j k)    S-9     $combo-timeout all-released (lower raise)
+  (k l)    S-0     $combo-timeout all-released (lower raise)
+  (m ,)    S-,     $combo-timeout all-released (lower raise)
+  (, .)    S-.     $combo-timeout all-released (lower raise)
+
+  (q a)    M-a     $combo-timeout all-released (lower raise)
+  (a z)    M-z     $combo-timeout all-released (lower raise)
+  (z x)    S-M-z   $combo-timeout all-released (lower raise)
+  (s x)    M-x     $combo-timeout all-released (lower raise)
+  (d c)    M-c     $combo-timeout all-released (lower raise)
+  (f v)    M-v     $combo-timeout all-released (lower raise)
+)
