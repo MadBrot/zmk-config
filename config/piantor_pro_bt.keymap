@@ -84,6 +84,23 @@ ZMK_MOD_MORPH(spc_bspc,
     mods = <(MOD_LSFT|MOD_RSFT)>;
 )
 
+/* German umlauts via macOS Option dead keys (ABC/US) */
+ZMK_MACRO(ae, wait-ms = <30>; tap-ms = <30>; bindings = <&macro_tap &kp LA(U) &kp A>;)
+ZMK_MACRO(Ae, wait-ms = <30>; tap-ms = <30>; bindings = <&macro_tap &kp LA(U) &kp LS(A)>;)
+ZMK_MACRO(oe, wait-ms = <30>; tap-ms = <30>; bindings = <&macro_tap &kp LA(U) &kp O>;)
+ZMK_MACRO(Oe, wait-ms = <30>; tap-ms = <30>; bindings = <&macro_tap &kp LA(U) &kp LS(O)>;)
+ZMK_MACRO(ue, wait-ms = <30>; tap-ms = <30>; bindings = <&macro_tap &kp LA(U) &kp U>;)
+ZMK_MACRO(Ue, wait-ms = <30>; tap-ms = <30>; bindings = <&macro_tap &kp LA(U) &kp LS(U)>;)
+ZMK_MACRO(sz, wait-ms = <30>; tap-ms = <30>; bindings = <&macro_tap &kp LA(S)>;)
+
+ZMK_MOD_MORPH(_ae, bindings = <&ae>, <&Ae>; mods = <(MOD_LSFT|MOD_RSFT)>;)
+ZMK_MOD_MORPH(_oe, bindings = <&oe>, <&Oe>; mods = <(MOD_LSFT|MOD_RSFT)>;)
+ZMK_MOD_MORPH(_ue, bindings = <&ue>, <&Ue>; mods = <(MOD_LSFT|MOD_RSFT)>;)
+
+/* RAISE programming arrows */
+ZMK_MACRO(arr, bindings = <&macro_tap &kp MINUS &kp GT>;)
+ZMK_MACRO(fat, bindings = <&macro_tap &kp EQUAL &kp GT>;)
+
 / {
     chosen { zmk,physical-layout = &default_layout; };
 };
@@ -165,11 +182,35 @@ ZMK_MOD_MORPH(spc_bspc,
             layers = <BASE>;
         };
 
+        // _
+        combo_underscore {
+            timeout-ms = <50>;
+            key-positions = <LB0 RB0>;
+            bindings = <&kp UNDER>;
+            layers = <BASE>;
+        };
+
         // =
         combo_equal {
             timeout-ms = <50>;
             key-positions = <RM0 RM1>;
             bindings = <&kp EQUAL>;
+            layers = <BASE>;
+        };
+
+        // `
+        combo_grave {
+            timeout-ms = <50>;
+            key-positions = <LT3 LT2>;
+            bindings = <&kp GRAVE>;
+            layers = <BASE>;
+        };
+
+        // |
+        combo_pipe {
+            timeout-ms = <50>;
+            key-positions = <RB3 RB4>;
+            bindings = <&kp PIPE>;
             layers = <BASE>;
         };
 
@@ -287,22 +328,22 @@ ZMK_MOD_MORPH(spc_bspc,
         };
 
         lower_layer {
-            display-name = "NUMBER";
+            display-name = "LOWER";
             bindings = <
-                &kp TAB    &kp N1      &kp N2           &kp N3      &kp N4  &kp N5          &kp N6    &kp N7    &kp N8  &kp RIGHT  &trans  &trans
-                &kp LCTRL  &bt BT_SEL 0  &bt BT_SEL 1   &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &kp LEFT  &kp DOWN  &kp UP  &kp RIGHT  &trans  &trans
-                &kp LSHFT  &bt BT_CLR  &rgb_ug RGB_TOG  &sys_reset  &trans  &studio_unlock  &trans    &trans    &trans  &trans     &trans  &trans
-                                       &kp LGUI        &trans      &kp SPACE  &kp LGUI       &kp DEL   &kp SPACE
+                &kp TAB    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &bt BT_CLR  &rgb_ug RGB_TOG  &sys_reset  &studio_unlock  &trans  &trans
+                &kp LCTRL  &trans        &trans        &trans        &trans        &trans        &kp LEFT   &kp DOWN        &kp UP      &kp RIGHT       &kp HOME &kp END
+                &kp LSHFT  &trans        &trans        &trans        &trans        &trans        &kp LA(LEFT) &kp PG_DN     &kp PG_UP   &kp LA(RIGHT)   &trans  &trans
+                                       &kp LGUI        &trans      &trans         &trans        &kp DEL   &trans
             >;
         };
 
         raise_layer {
             display-name = "SYMBOL";
             bindings = <
-                &kp TAB    &kp NUMBER_1     &kp AMPERSAND    &kp ASTERISK        &kp MINUS           &kp CARET     &kp N7  &kp N8           &kp N9        &kp NUMBER_9  &kp NUMBER_0  &kp BSPC
-                &kp LCTRL  &trans           &kp LEFT_BRACKET  &kp LEFT_BRACE   &kp LEFT_PARENTHESIS  &kp EQUAL        &kp N4     &kp N5           &kp N6  &kp N6      &kp BSLH      &kp GRAVE
-                &kp LSHFT  &kp EXCLAMATION  &kp AT_SIGN    &kp POUND           &kp DOLLAR            &kp PERCENT      &kp N1     &kp N2          &kp N3        &kp N3     &kp PIPE      &kp TILDE
-                                            &trans         &trans              &trans                                 &trans        &kp N0          &kp N0
+                &kp TAB    &kp N1           &kp AMPERSAND     &kp ASTERISK        &kp MINUS              &kp CARET   &trans   &kp N7  &kp N8  &kp N9  &arr     &kp BSPC
+                &kp LCTRL  &_ae             &sz               &_oe                &_ue                   &kp EQUAL   &trans   &kp N4  &kp N5  &kp N6  &kp BSLH &kp GRAVE
+                &kp LSHFT  &kp EXCLAMATION  &kp AT_SIGN       &kp POUND            &kp DOLLAR             &kp PERCENT &kp N0   &kp N1  &kp N2  &kp N3  &fat     &trans
+                                            &trans         &trans              &trans                                 &trans   &kp N0  &kp N0
             >;
         };
 
