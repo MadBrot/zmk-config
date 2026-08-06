@@ -85,17 +85,17 @@ ZMK_MOD_MORPH(spc_bspc,
 )
 
 /* German umlauts via macOS Option dead keys (ABC/US) */
-ZMK_MACRO(ae, wait-ms = <30>; tap-ms = <30>; bindings = <&macro_tap &kp LA(U) &kp A>;)
-ZMK_MACRO(Ae, wait-ms = <30>; tap-ms = <30>; bindings = <&macro_tap &kp LA(U) &kp LS(A)>;)
-ZMK_MACRO(oe, wait-ms = <30>; tap-ms = <30>; bindings = <&macro_tap &kp LA(U) &kp O>;)
-ZMK_MACRO(Oe, wait-ms = <30>; tap-ms = <30>; bindings = <&macro_tap &kp LA(U) &kp LS(O)>;)
-ZMK_MACRO(ue, wait-ms = <30>; tap-ms = <30>; bindings = <&macro_tap &kp LA(U) &kp U>;)
-ZMK_MACRO(Ue, wait-ms = <30>; tap-ms = <30>; bindings = <&macro_tap &kp LA(U) &kp LS(U)>;)
+ZMK_MACRO(ae_l, wait-ms = <30>; tap-ms = <30>; bindings = <&macro_tap &kp LA(U) &kp A>;)
+ZMK_MACRO(ae_u, wait-ms = <30>; tap-ms = <30>; bindings = <&macro_tap &kp LA(U) &kp LS(A)>;)
+ZMK_MACRO(oe_l, wait-ms = <30>; tap-ms = <30>; bindings = <&macro_tap &kp LA(U) &kp O>;)
+ZMK_MACRO(oe_u, wait-ms = <30>; tap-ms = <30>; bindings = <&macro_tap &kp LA(U) &kp LS(O)>;)
+ZMK_MACRO(ue_l, wait-ms = <30>; tap-ms = <30>; bindings = <&macro_tap &kp LA(U) &kp U>;)
+ZMK_MACRO(ue_u, wait-ms = <30>; tap-ms = <30>; bindings = <&macro_tap &kp LA(U) &kp LS(U)>;)
 ZMK_MACRO(sz, wait-ms = <30>; tap-ms = <30>; bindings = <&macro_tap &kp LA(S)>;)
 
-ZMK_MOD_MORPH(_ae, bindings = <&ae>, <&Ae>; mods = <(MOD_LSFT|MOD_RSFT)>;)
-ZMK_MOD_MORPH(_oe, bindings = <&oe>, <&Oe>; mods = <(MOD_LSFT|MOD_RSFT)>;)
-ZMK_MOD_MORPH(_ue, bindings = <&ue>, <&Ue>; mods = <(MOD_LSFT|MOD_RSFT)>;)
+ZMK_MOD_MORPH(_ae, bindings = <&ae_l>, <&ae_u>; mods = <(MOD_LSFT|MOD_RSFT)>;)
+ZMK_MOD_MORPH(_oe, bindings = <&oe_l>, <&oe_u>; mods = <(MOD_LSFT|MOD_RSFT)>;)
+ZMK_MOD_MORPH(_ue, bindings = <&ue_l>, <&ue_u>; mods = <(MOD_LSFT|MOD_RSFT)>;)
 
 /* RAISE programming arrows */
 ZMK_MACRO(arr, bindings = <&macro_tap &kp MINUS &kp GT>;)
