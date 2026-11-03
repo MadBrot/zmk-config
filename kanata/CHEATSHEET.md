@@ -14,17 +14,16 @@ Alt  | Shift | LOWER  ||  RAISE | Space | OMNI
 
 | Role | Action |
 |------|--------|
-| LOWER thumb | hold → numbers, nav, umlauts, F-keys, **Bspc/Del** |
+| LOWER thumb | hold → numbers, nav, umlauts, F-keys, **Backspace** |
 | RAISE thumb | hold → symbols, `->` / `=>` |
 | Alt thumb | Option |
 | OMNI thumb | hold → Option+7/8/9, 4/5/6, 1/2/3 on U I O / J K L / M , . |
-| Shift | Shift (on LOWER: this thumb becomes **Backspace**, hold to repeat) |
+| Shift | Shift |
 | Space | Space |
 
 | Shortcut | Action |
 |----------|--------|
-| **Shift + Space** (thumb or pinky Shift) | Backspace (hold to repeat) |
-| **LOWER + Space** | Delete (hold to repeat) |
+| **LOWER + Space** | Backspace (hold to repeat) |
 
 **Laptop helpers:** hold Caps or right Opt → LOWER · hold `'` → RAISE · tap Caps → Esc · tap `'` → `'`
 
