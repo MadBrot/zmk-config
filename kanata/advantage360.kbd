@@ -14,7 +14,7 @@
 ;;
 ;;   Piantor slot     Kanata key    SmartSet action
 ;;   --------------   ----------    ---------------
-;;   LH2 AERO         f15           […]>[f15]
+;;   LH2 Alt          f15           […]>[f15]
 ;;   LH1 Shift        f17           […]>[f17]
 ;;   LH0 LOWER        f13           […]>[f13]
 ;;   RH0 RAISE        f14           […]>[f14]
@@ -22,7 +22,7 @@
 ;;   RH2 OMNI         f16           […]>[f16]  hold → Option+1–9 (OmniWM)
 ;;
 ;; Thumb row (outer → inner | inner → outer):
-;;   AERO | Shift | LOWER  ||  RAISE | Space | OMNI
+;;   Alt  | Shift | LOWER  ||  RAISE | Space | OMNI
 ;; Bspc = any Shift+Space (defoverrides). Del = LOWER+Space.
 
 (defcfg
@@ -122,7 +122,7 @@
   tab  q   w   e   r   t          y   u   i   o   p   bspc
   esc  @a  @s  @d  @f  @g         @h  @j  @k  @l  @;  @quot
   lsft z   x   c   v   b          n   m   ,   .   /
-            @aero lsft @low     @rai spc @omn
+            lalt lsft @low     @rai spc @omn
                                  @ropt
 )
 
