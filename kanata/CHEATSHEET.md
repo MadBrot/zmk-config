@@ -32,7 +32,6 @@ Alt  | Shift | LOWER  ||  RAISE | Space | OMNI
 
 | Key | Hold |
 |-----|------|
-| A | AERO (Opt+Cmd) |
 | S | Opt |
 | D | Cmd |
 | F | Ctrl |
@@ -41,7 +40,6 @@ Alt  | Shift | LOWER  ||  RAISE | Space | OMNI
 | J | Ctrl |
 | K | Cmd |
 | L | Opt |
-| ; | AERO |
 
 Opposite-hand only (timeless HRMs). Same-hand rolls stay letters.
 

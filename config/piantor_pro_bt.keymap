@@ -64,7 +64,6 @@
 #define MEH LG(LC(LS(LALT)))
 #define ___ &trans
 #define _0_ &to BASE 
-#define AERO LA(LGUI)
 
 #define QUICK_TAP_MS 175
 
@@ -322,7 +321,7 @@ ZMK_MACRO(fat, bindings = <&macro_tap &kp EQUAL &kp GT>;)
             display-name = "QWERTY";
             bindings = <
                 &kp TAB     &kp Q            &kp W            &kp E                &kp R              &kp T         &kp Y        &kp U               &kp I                 &kp O             &kp P                    &kp BSPC
-                &kp ESCAPE  &hml AERO A      &hml LALT S        &hml LGUI D          &hml LCTRL F          &hml MEH G    &hmr MEH H   &hmr RCTRL J           &hmr RGUI K           &hmr RALT L         &hmr AERO SEMICOLON      &kp SQT
+                &kp ESCAPE  &kp A            &hml LALT S        &hml LGUI D          &hml LCTRL F          &hml MEH G    &hmr MEH H   &hmr RCTRL J           &hmr RGUI K           &hmr RALT L         &kp SEMICOLON            &kp SQT
                 &kp LSHFT   &kp Z            &kp X            &kp C                &kp V              &kp B         &kp N        &kp M               &kp COMMA             &kp DOT           &kp FSLH                 &to MOUSE
                                                               &kp LALT        &kp LEFT_SHIFT     &mo 1         &mo 2        &spc_bspc  &mo OMNI
             >;

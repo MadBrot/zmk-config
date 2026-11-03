@@ -68,7 +68,6 @@
 )
 
 (defalias
-  aero (multi lalt lmet)
   meh  (multi lmet lctrl lsft lalt)
   low  (layer-while-held lower)
   rai  (layer-while-held raise)
@@ -96,7 +95,6 @@
   arr (macro - S-.)
   fat (macro = S-.)
 
-  a (t! hrm a @aero)
   s (t! hrm s lalt)
   d (t! hrm d lmet)
   f (t! hrm f lctrl)
@@ -105,7 +103,6 @@
   j (t! hrm j rctrl)
   k (t! hrm k rmet)
   l (t! hrm l ralt)
-  ; (t! hrm ; @aero)
 )
 
 (defsrc
@@ -120,7 +117,7 @@
 (deflayer base
   @cap
   tab  q   w   e   r   t          y   u   i   o   p   bspc
-  esc  @a  @s  @d  @f  @g         @h  @j  @k  @l  @;  @quot
+  esc  a   @s  @d  @f  @g         @h  @j  @k  @l  ;   @quot
   lsft z   x   c   v   b          n   m   ,   .   /
             lalt lsft @low     @rai spc @omn
                                  @ropt
