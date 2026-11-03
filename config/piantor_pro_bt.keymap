@@ -58,6 +58,7 @@
 #define BASE  0
 #define LOWER 1
 #define MOUSE 4
+#define OMNI  5
 
 // Keys
 #define MEH LG(LC(LS(LALT)))
@@ -323,7 +324,7 @@ ZMK_MACRO(fat, bindings = <&macro_tap &kp EQUAL &kp GT>;)
                 &kp TAB     &kp Q            &kp W            &kp E                &kp R              &kp T         &kp Y        &kp U               &kp I                 &kp O             &kp P                    &kp BSPC
                 &kp ESCAPE  &hml AERO A      &hml LALT S        &hml LGUI D          &hml LCTRL F          &hml MEH G    &hmr MEH H   &hmr RCTRL J           &hmr RGUI K           &hmr RALT L         &hmr AERO SEMICOLON      &kp SQT
                 &kp LSHFT   &kp Z            &kp X            &kp C                &kp V              &kp B         &kp N        &kp M               &kp COMMA             &kp DOT           &kp FSLH                 &to MOUSE
-                                                              &kp AERO        &kp LEFT_SHIFT     &mo 1         &mo 2        &spc_bspc  &kp AERO
+                                                              &kp AERO        &kp LEFT_SHIFT     &mo 1         &mo 2        &spc_bspc  &mo OMNI
             >;
         };
 
@@ -362,6 +363,17 @@ ZMK_MACRO(fat, bindings = <&macro_tap &kp EQUAL &kp GT>;)
                 _0_      &kp RGUI &kp LALT &kp LCTRL &kp LSHFT _0_     _MM_L   _MM_D   _MM_U   _MM_R   _0_      _0_
                 _0_      _0_      _0_      _0_       _0_       _0_      _0_     &kp PG_DN &kp PG_UP _0_      _0_      _0_
                                   _0_      _0_       _0_      &mkp LCLK &mkp RCLK &mkp MCLK
+            >;
+        };
+
+        /* Right cols 2–4, same order as the symbol numpad */
+        omni_layer {
+            display-name = "OMNI";
+            bindings = <
+                &trans  &trans  &trans  &trans  &trans  &trans    &trans  &kp LA(N7)  &kp LA(N8)  &kp LA(N9)  &trans  &trans
+                &trans  &trans  &trans  &trans  &trans  &trans    &trans  &kp LA(N4)  &kp LA(N5)  &kp LA(N6)  &trans  &trans
+                &trans  &trans  &trans  &trans  &trans  &trans    &trans  &kp LA(N1)  &kp LA(N2)  &kp LA(N3)  &trans  &trans
+                                        &trans  &trans  &trans    &trans  &trans      &trans
             >;
         };
     };

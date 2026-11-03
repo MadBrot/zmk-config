@@ -19,10 +19,10 @@
 ;;   LH0 LOWER        f13           […]>[f13]
 ;;   RH0 RAISE        f14           […]>[f14]
 ;;   RH1 Space        spc           leave Space
-;;   RH2 AERO         f16           […]>[f16]
+;;   RH2 OMNI         f16           […]>[f16]  hold → Option+1–9 (OmniWM)
 ;;
 ;; Thumb row (outer → inner | inner → outer):
-;;   AERO | Shift | LOWER  ||  RAISE | Space | AERO
+;;   AERO | Shift | LOWER  ||  RAISE | Space | OMNI
 ;; Bspc = any Shift+Space (defoverrides). Del = LOWER+Space.
 
 (defcfg
@@ -72,6 +72,7 @@
   meh  (multi lmet lctrl lsft lalt)
   low  (layer-while-held lower)
   rai  (layer-while-held raise)
+  omn  (layer-while-held omni)
   cw   (caps-word 2000)
 
   ;; Layer access helpers (Mac + boards)
@@ -121,7 +122,7 @@
   tab  q   w   e   r   t          y   u   i   o   p   bspc
   esc  @a  @s  @d  @f  @g         @h  @j  @k  @l  @;  @quot
   lsft z   x   c   v   b          n   m   ,   .   /
-            @aero lsft @low     @rai spc @aero
+            @aero lsft @low     @rai spc @omn
                                  @ropt
 )
 
@@ -148,6 +149,19 @@
                                  _
 )
 
+;; Right thumb hold: cols 2–4, same order as the symbol numpad.
+;;   u i o → ⌥7 ⌥8 ⌥9
+;;   j k l → ⌥4 ⌥5 ⌥6
+;;   m , . → ⌥1 ⌥2 ⌥3
+(deflayer omni
+  _
+  _  _  _  _  _  _        _  A-7  A-8  A-9  _  _
+  _  _  _  _  _  _        _  A-4  A-5  A-6  _  _
+  _  _  _  _  _  _        _  A-1  A-2  A-3  _
+            _  _  _      _  _  _
+                                 _
+)
+
 ;; Shift+Space → Backspace (works with thumb Shift or pinky Shift; hold to repeat)
 (defoverrides
   (lsft spc) (bspc)
@@ -156,37 +170,37 @@
 
 (defchordsv2
   ;; editing (all layers)
-  (j k l)  ret     $combo-timeout first-release ()
-  (x c v)  bspc    $combo-timeout first-release ()
-  (m , .)  bspc    $combo-timeout first-release ()
-  (s d f)  del     $combo-timeout first-release ()
+  (j k l)  ret     $combo-timeout first-release (omni)
+  (x c v)  bspc    $combo-timeout first-release (omni)
+  (m , .)  bspc    $combo-timeout first-release (omni)
+  (s d f)  del     $combo-timeout first-release (omni)
   ;; LOWER thumb + Space → Delete (backup if layer timing misses)
   (f13 spc) del    200 first-release ()
   ;; ZMK K_SLEEP is Linux-only in Kanata; on macOS this locks the screen
   (tab esc lsft) C-M-q $combo-timeout all-released ()
 
   ;; caps-word + symbols + clipboard (base only)
-  (f j)    @cw     $combo-timeout all-released (lower raise)
+  (f j)    @cw     $combo-timeout all-released (lower raise omni)
 
-  (n m)    -       $combo-timeout all-released (lower raise)
-  (b n)    S--     $combo-timeout all-released (lower raise)
-  (h j)    =       $combo-timeout all-released (lower raise)
-  (q w)    grv     $combo-timeout all-released (lower raise)
-  (. /)    S-\     $combo-timeout all-released (lower raise)
+  (n m)    -       $combo-timeout all-released (lower raise omni)
+  (b n)    S--     $combo-timeout all-released (lower raise omni)
+  (h j)    =       $combo-timeout all-released (lower raise omni)
+  (q w)    grv     $combo-timeout all-released (lower raise omni)
+  (. /)    S-\     $combo-timeout all-released (lower raise omni)
 
-  (u j)    [       $combo-timeout all-released (lower raise)
-  (o l)    ]       $combo-timeout all-released (lower raise)
-  (u i)    S-[     $combo-timeout all-released (lower raise)
-  (i o)    S-]     $combo-timeout all-released (lower raise)
-  (j k)    S-9     $combo-timeout all-released (lower raise)
-  (k l)    S-0     $combo-timeout all-released (lower raise)
-  (m ,)    S-,     $combo-timeout all-released (lower raise)
-  (, .)    S-.     $combo-timeout all-released (lower raise)
+  (u j)    [       $combo-timeout all-released (lower raise omni)
+  (o l)    ]       $combo-timeout all-released (lower raise omni)
+  (u i)    S-[     $combo-timeout all-released (lower raise omni)
+  (i o)    S-]     $combo-timeout all-released (lower raise omni)
+  (j k)    S-9     $combo-timeout all-released (lower raise omni)
+  (k l)    S-0     $combo-timeout all-released (lower raise omni)
+  (m ,)    S-,     $combo-timeout all-released (lower raise omni)
+  (, .)    S-.     $combo-timeout all-released (lower raise omni)
 
-  (q a)    M-a     $combo-timeout all-released (lower raise)
-  (a z)    M-z     $combo-timeout all-released (lower raise)
-  (z x)    S-M-z   $combo-timeout all-released (lower raise)
-  (s x)    M-x     $combo-timeout all-released (lower raise)
-  (d c)    M-c     $combo-timeout all-released (lower raise)
-  (f v)    M-v     $combo-timeout all-released (lower raise)
+  (q a)    M-a     $combo-timeout all-released (lower raise omni)
+  (a z)    M-z     $combo-timeout all-released (lower raise omni)
+  (z x)    S-M-z   $combo-timeout all-released (lower raise omni)
+  (s x)    M-x     $combo-timeout all-released (lower raise omni)
+  (d c)    M-c     $combo-timeout all-released (lower raise omni)
+  (f v)    M-v     $combo-timeout all-released (lower raise omni)
 )

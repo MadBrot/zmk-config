@@ -8,7 +8,7 @@ macOS, ABC/US input source. Config: [`advantage360.kbd`](advantage360.kbd).
 
 ```
 Outer → inner          Inner → outer
-AERO | Shift | LOWER  ||  RAISE | Space | AERO
+AERO | Shift | LOWER  ||  RAISE | Space | OMNI
  f15    f17     f13        f14    spc    f16
 ```
 
@@ -16,7 +16,8 @@ AERO | Shift | LOWER  ||  RAISE | Space | AERO
 |------|--------|
 | LOWER thumb | hold → numbers, nav, umlauts, F-keys, **Bspc/Del** |
 | RAISE thumb | hold → symbols, `->` / `=>` |
-| AERO | Opt+Cmd (window manager) |
+| AERO | Opt+Cmd (left thumb) |
+| OMNI thumb | hold → Option+7/8/9, 4/5/6, 1/2/3 on U I O / J K L / M , . |
 | Shift | Shift (on LOWER: this thumb becomes **Backspace**, hold to repeat) |
 | Space | Space |
 
