@@ -1,0 +1,8 @@
+config PIANTOR_STATUS_LEDS
+    bool "Piantor Pro BT layer and battery LEDs"
+    depends on (BOARD_PIANTOR_PRO_BT_LEFT || BOARD_PIANTOR_PRO_BT_RIGHT) && ZMK_SPLIT_BLE
+    depends on !ZMK_RGB_UNDERGLOW
+    default y
+    select ZMK_BATTERY_REPORTING
+    select LED_STRIP
+    select WS2812_STRIP

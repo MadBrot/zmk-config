@@ -1,0 +1,8 @@
+description: Synchronize the active Piantor layer's LED color between halves.
+compatible: "zmk,behavior-layer-leds"
+include: one_param.yaml
+
+properties:
+  layer-colors:
+    type: array
+    description: Packed RGB colors by layer ID. Zero leaves the LEDs off.

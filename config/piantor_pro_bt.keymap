@@ -1,7 +1,6 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
-#include <dt-bindings/zmk/rgb.h>
 #include <zmk-helpers/helper.h>
 
 /* Left */
@@ -58,6 +57,11 @@
 #define BASE  0
 #define LOWER 1
 #define OMNI  4
+
+&layer_leds {
+    // QWERTY off, LOWER blue, SYMBOL amber, gaming teal, OMNI purple.
+    layer-colors = <0x000000 0x00142b 0x2b1500 0x00271d 0x231031>;
+};
 
 // Keys
 #define MEH LG(LC(LS(LALT)))

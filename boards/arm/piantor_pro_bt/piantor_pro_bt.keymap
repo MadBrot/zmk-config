@@ -7,7 +7,12 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
-#include <dt-bindings/zmk/rgb.h>
+
+&layer_leds {
+    // QWERTY off, NUMBER blue, SYMBOL amber, EXTRA 1–6.
+    layer-colors = <0x000000 0x00142b 0x2b1500 0x00271d 0x231031
+                    0x2d2400 0x062a03 0x2b0921 0x252525>;
+};
 
 / {
     chosen {
@@ -39,12 +44,12 @@
             // -----------------------------------------------------------------------------------------
             // |  TAB |  1  |  2  |  3  |  4  |  5    |  6  |  7  |  8  |  9  |  0  | BSPC |
             // | CTRL | BT1 | BT2 | BT3 | BT4 | BT5   | LFT | DWN |  UP | RGT |     |      |
-            // | SHFT | BTCR| RGB | RST | BOOT| Unlock|     |     |     |     |     |      |
+            // | SHFT | BTCR|     | RST | BOOT| Unlock|     |     |     |     |     |      |
             //                    | GUI |     | SPC   | ENT |     | ALT |
             bindings = <
                 &kp TAB   &kp N1       &kp N2          &kp N3       &kp N4       &kp N5         &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &kp BSPC
                 &kp LCTRL &bt BT_SEL 0 &bt BT_SEL 1    &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
-                &kp LSHFT &bt BT_CLR   &rgb_ug RGB_TOG &sys_reset   &bootloader  &studio_unlock &trans   &trans   &trans &trans    &trans &trans
+                &kp LSHFT &bt BT_CLR   &none   &sys_reset   &bootloader  &studio_unlock &trans   &trans   &trans &trans    &trans &trans
                                                        &kp LGUI     &trans       &kp SPACE      &kp LGUI &trans   &kp SPACE
             >;
         };
